@@ -1,0 +1,64 @@
+Module slurm/15.08.1 loaded 
+Module bwa/0.7.9a loaded 
+Module samtools/1.2 loaded 
+[M::main_mem] read 100050 sequences (10000139 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (6, 253, 6, 9)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (376, 459, 489)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (150, 715)
+[M::mem_pestat] mean and std.dev: (429.66, 98.48)
+[M::mem_pestat] low and high boundaries for proper pairs: (36, 828)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 100050 reads in 37.970 CPU sec, 37.990 real sec
+[M::main_mem] read 100074 sequences (10000151 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (3, 91, 1, 1)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (448, 469, 482)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (380, 550)
+[M::mem_pestat] mean and std.dev: (466.00, 25.64)
+[M::mem_pestat] low and high boundaries for proper pairs: (346, 584)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 100074 reads in 30.774 CPU sec, 30.787 real sec
+[M::main_mem] read 100050 sequences (10000193 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 65, 1, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (449, 470, 480)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (387, 542)
+[M::mem_pestat] mean and std.dev: (462.04, 26.71)
+[M::mem_pestat] low and high boundaries for proper pairs: (355, 573)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 100050 reads in 21.762 CPU sec, 21.772 real sec
+[M::main_mem] read 100000 sequences (10000000 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 13, 2, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (35, 55, 364)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1022)
+[M::mem_pestat] mean and std.dev: (150.55, 153.50)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1351)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 100000 reads in 11.058 CPU sec, 11.062 real sec
+[M::main_mem] read 100000 sequences (10000000 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 8, 1, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] skip orientation FR as there are not enough pairs
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 100000 reads in 8.191 CPU sec, 8.195 real sec
+[M::main_mem] read 66034 sequences (6603400 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (1, 4, 1, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] skip orientation FR as there are not enough pairs
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_process_seqs] Processed 66034 reads in 5.349 CPU sec, 5.351 real sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem zea Zmays_R1.fq.gz Zmays_R2.fq.gz
+[main] Real time: 122.999 sec; CPU: 116.954 sec
