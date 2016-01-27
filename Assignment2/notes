@@ -34,15 +34,14 @@ How are the summary stats different?
 - Z. mays had 88127 reads mapped (15.53%)
 - T. dip had 602866 read mapped (7.05%)
 
-Why did so few reads map?
-What might be an explanaton for any differences?
+Why did so few reads map? What might be an explanaton for any differences?
 - Only chromosome 10 from Zea mays was provided as a reference,
-full reference genome might yield better overall coverage
+- full reference genome might yield better overall coverage
+- smallest read length (76bp for Z mex) had highest mapping
 - small .fq files provided, more reads might yield better coverage,
-the highest number of reads (Tdip) had the lowest mapping at highest coverage)
+- the highest number of reads (Tdip) had the lowest mapping at highest coverage
 - species divergence from reference (Tdip)
-- Z. mays didn't have very may reads mapping, only 1.1 million reads input
-
+- Z. mays didn't have very may reads mapping, but only 1.1 million reads input
 
 samstat
 http://rawgit.com/ljcohen/ECL243/master/Assignment2/aln_Tdip.sam.samstat.html
