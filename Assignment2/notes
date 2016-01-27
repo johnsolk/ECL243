@@ -1,0 +1,52 @@
+What sequencing depth is your alignment?
+- 
+
+Why did so few reads map?
+- Only chromosome 10 was provided as a reference
+
+How are the summary stats different?
+- Z. mex had 1470419 reads mapped (54.96%) 
+- Z. mays had 88127 reads mapped (15.53%)
+- 
+- 
+
+What might be an explanaton for any differences?
+- species divergence
+- only small .fq files provided, more reads might yield better coverage
+
+ljcohen@farm:~/ECL243/Assignment2$ zcat Zmays_R1.fq.gz | wc -l
+1132416
+ljcohen@farm:~/ECL243/Assignment2$ zcat Zmays_R2.fq.gz | wc -l
+1132416
+ljcohen@farm:~/ECL243/Assignment2$ zcat Zmex_R1.fq.gz | wc -l
+5346216
+ljcohen@farm:~/ECL243/Assignment2$ zcat Zmex_R2.fq.gz | wc -l
+5346216
+ljcohen@farm:~/ECL243/Assignment2$ zcat Tdip_R1.fq.gz | wc -l
+17074344
+ljcohen@farm:~/ECL243/Assignment2$ zcat Tdip_R2.fq.gz | wc -l
+17074344
+
+
+samstat
+http://rawgit.com/ljcohen/ECL243/master/Assignment2/aln_Tdip.sam.samstat.html
+http://rawgit.com/ljcohen/ECL243/master/Assignment2/aln_Zmays.sam.samstat.html
+http://rawgit.com/ljcohen/ECL243/master/Assignment2/aln_Zmex.sam.samstat.html
+
+Challenge:
+
+Do you get more or fewer SNPs than you expected? Any idea why?
+
+
+
+
+samtools reference manual:
+http://www.htslib.org/doc/samtools-1.1.html
+
+bwa reference manual:
+http://bio-bwa.sourceforge.net/bwa.shtml
+
+Helpful links:
+http://arxiv.org/abs/1303.3997
+https://www.biostars.org/p/117225/
+http://seqanswers.com/forums/showthread.php?t=32708
