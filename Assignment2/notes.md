@@ -34,15 +34,15 @@ Read length:
 
 
 Coverage depth:
-Z mays: 100*1132416/152126075 =  0.7443931
-Z mex: 76*5346216/152126075 = 2.670893
-T dip: 100*17074344/152126075 = 11.22381
+* Z mays: 100*1132416/152126075 =  0.7443931
+* Z mex: 76*5346216/152126075 = 2.670893
+* T dip: 100*17074344/152126075 = 11.22381
 
 ###How are the summary stats different?
 
-- Z. mex had 1470419 reads mapped (54.96%) 
-- Z. mays had 88127 reads mapped (15.53%)
-- T. dip had 602866 read mapped (7.05%)
+* Z. mex had 1470419 reads mapped (54.96%) 
+* Z. mays had 88127 reads mapped (15.53%)
+* T. dip had 602866 read mapped (7.05%)
 
 ###Why did so few reads map? What might be an explanaton for any differences?
 - Only chromosome 10 from Zea mays was provided as a reference,
