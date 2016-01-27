@@ -68,15 +68,15 @@ http://www.htslib.org/doc/samtools-1.1.html
 http://bio-bwa.sourceforge.net/bwa.shtml
 
 ###Helpful links:
-https://www.biostars.org/p/638/
-http://www.illumina.com/documents/products/technotes/technote_coverage_calculation.pdf
-http://arxiv.org/abs/1303.3997
-https://www.biostars.org/p/117225/
-http://seqanswers.com/forums/showthread.php?t=32708
-https://www.biostars.org/p/12475/
-https://www.biostars.org/p/84396/
-http://davetang.org/wiki/tiki-index.php?page=SAMTools#Simple_stats_using_SAMTools_flagstat
-http://davetang.org/wiki/tiki-index.php?page=SAMStat
-https://broadinstitute.github.io/picard/explain-flags.html
-https://samtools.github.io/hts-specs/SAMv1.pdf
+- https://www.biostars.org/p/638/
+- http://www.illumina.com/documents/products/technotes/technote_coverage_calculation.pdf
+- http://arxiv.org/abs/1303.3997
+- https://www.biostars.org/p/117225/
+- http://seqanswers.com/forums/showthread.php?t=32708
+- https://www.biostars.org/p/12475/
+- https://www.biostars.org/p/84396/
+- http://davetang.org/wiki/tiki-index.php?page=SAMTools#Simple_stats_using_SAMTools_flagstat
+- http://davetang.org/wiki/tiki-index.php?page=SAMStat
+- https://broadinstitute.github.io/picard/explain-flags.html
+- https://samtools.github.io/hts-specs/SAMv1.pdf
 
