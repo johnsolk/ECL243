@@ -9,13 +9,18 @@ Genome browser:
 http://web.malab.cn/symka_new/index.jsp
 
 Discussion questions to guide reading:
-- ~36k genes in ~1.Gb genome
-- symbiosis
-- horizontal gene transfer
-- evidence for co-evolution?
-- Gene Ontologies
-http://www.genome.jp/dbget-bin/www_bget?gn:T10028
-http://www.genome.jp/kegg/catalog/org_list1.html
+- How did they conclude there are ~36k genes in ~1.Gb genome?
+- How did they perform annotations?
+- What are the Symbiodinium-specific gene families?
+- They authors suggest that they have found evidence for the following.: 
+      - retrotransposition
+      - gene family expansion
+      - no whole-genome duplication
+      - sexual reproduction
+      - cyst formation
+      - miRNA for gene expression regulation in coral and symbiont
+      - host-symbiont co-evolution
+What evidence do they present for each?
 
 ##Participation
 
