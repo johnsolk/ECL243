@@ -2,7 +2,7 @@
 
 To calculates sequencing depth of coverage: 
 
-C=(read length)(nubmer of reads)/Genome length
+C=(read length)(number of reads)/Genome length
 
 Genome length (number of characters in the fasta file):
 
