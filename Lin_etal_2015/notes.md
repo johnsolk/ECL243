@@ -45,9 +45,9 @@ Student B
 - questions
 
 ###Additional References
-https://twitter.com/search?q=Symbiodinium&src=typd&lang=en
-https://en.wikipedia.org/wiki/Symbiodinium
-http://www.cell.com/current-biology/abstract/S0960-9822(13)00687-8
-http://journal.frontiersin.org/article/10.3389/fmicb.2014.00336/full
-https://reefgenomics.kaust.edu.sa/Pages/Symbiodinium%20Genome.aspx
-http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0035269
+- https://twitter.com/search?q=Symbiodinium&src=typd&lang=en
+- https://en.wikipedia.org/wiki/Symbiodinium
+- http://www.cell.com/current-biology/abstract/S0960-9822(13)00687-8
+- http://journal.frontiersin.org/article/10.3389/fmicb.2014.00336/full
+- https://reefgenomics.kaust.edu.sa/Pages/Symbiodinium%20Genome.aspx
+- http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0035269
