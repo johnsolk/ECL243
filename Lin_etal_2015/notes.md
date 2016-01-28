@@ -12,7 +12,7 @@ Discussion questions to guide reading:
 - Why did they conclude there are ~36k genes in ~1.Gb genome?
 - How did they perform annotations?
 - What are the Symbiodinium-specific gene families?
-- What do you think of the evidence presented for each of the following: 
+- What is the evidence presented for each of the following: 
       - retrotransposition
       - gene family expansion
       - no whole-genome duplication
