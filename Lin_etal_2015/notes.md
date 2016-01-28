@@ -9,7 +9,7 @@ Genome browser:
 http://web.malab.cn/symka_new/index.jsp
 
 Discussion questions to guide reading:
-- How did they conclude there are ~36k genes in ~1.Gb genome?
+- Why did they conclude there are ~36k genes in ~1.Gb genome?
 - How did they perform annotations?
 - What are the Symbiodinium-specific gene families?
 - They authors suggest that they have found evidence for the following.: 
