@@ -12,7 +12,7 @@ Discussion questions to guide reading:
 - Why did they conclude there are ~36k genes in ~1.Gb genome?
 - How did they perform annotations?
 - What are the Symbiodinium-specific gene families?
-- They authors suggest that they have found evidence for the following.: 
+- What do you think of the evidence presented for each of the following: 
       - retrotransposition
       - gene family expansion
       - no whole-genome duplication
@@ -20,7 +20,7 @@ Discussion questions to guide reading:
       - cyst formation
       - miRNA for gene expression regulation in coral and symbiont
       - host-symbiont co-evolution
-What evidence do they present for each?
+
 
 ##Participation
 
