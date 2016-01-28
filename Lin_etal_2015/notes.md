@@ -8,11 +8,16 @@ http://www.ncbi.nlm.nih.gov/sra/?term=SRA148697
 Genome browser:
 http://web.malab.cn/symka_new/index.jsp
 
+Benefits:
+- probing environmental samples
+- separating host from symbiont
+
 Discussion questions to guide reading:
 - Why did they conclude there are ~36k genes in ~1.Gb genome?
 - How did they perform annotations?
 - What are the Symbiodinium-specific gene families?
 - What is the evidence presented for each of the following: 
+      - horizontal gene transfer
       - retrotransposition
       - gene family expansion
       - no whole-genome duplication
@@ -23,6 +28,8 @@ Discussion questions to guide reading:
 
 
 ##Participation
+
+What do you think about methods description? Could you replicate?
 
 Lisa Cohen
 - something interesting learned
