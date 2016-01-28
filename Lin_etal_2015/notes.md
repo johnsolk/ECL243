@@ -18,7 +18,7 @@ Discussion questions to guide reading:
       - no whole-genome duplication
       - sexual reproduction
       - cyst formation
-      - miRNA for gene expression regulation in coral and symbiont
+      - microRNA for gene expression regulation in coral and symbiont
       - host-symbiont co-evolution
 
 
