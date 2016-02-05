@@ -14,3 +14,5 @@ mean theta pi
 
 3. Explain the differences you see in nucleotide diversity and Tajima's D between
 maize and teosinte
+
+plots: http://rpubs.com/rossibarra/ecl243_diversity
