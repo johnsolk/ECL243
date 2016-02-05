@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -e
+set -u
+set -o pipefail
+
+#   A simple script to hold the varialbes for the NGS Admixture
+#   Are you using the Common_Config file?
+#       If so, where is it?
+COMMON=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Maize/Configuration_Files/Common_Config
+
+##############################################################################################
+#   If we aren't using the Common_Config file, specify these variables
+#   If Common_Config is specified, leave these blank
+#   Name the project
+PROJECT=
+
+#   Where do we put the outfiles?
+    #   Note, the final outdirectory will be
+    #   ${SCRATCH}/${PROJECT}/Admixture
+SCRATCH=
+##############################################################################################
+
+#   The Likelihood file
+#       This is the .beagle.gz file from the Site Frequency Spectrum
+LIKELIHOOD=/home/ljcohen/ECL243/Assignment3/scratch/Maize/SFS/Maize_SFSOut.beagle.gz
+
+#   ngsAdmix Parameters
+#       Listed below are the defaults, please modify for your samples
+K=5
+N_CORES=32
+MIN_MAF=0.05

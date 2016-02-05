@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -e
+set -u
+set -o pipefail
+
+#   A simple script to hold common variables for angsd-wrapper
+
+#   Define a list of samples
+SAMPLE_LIST=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Teosinte/Teosinte_Samples.txt
+
+#   Define a list of inbreeding coefficients
+#	This should end in '_.indF'
+SAMPLE_INBREEDING=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Teosinte/Teosinte_Inbreeding.txt
+
+#   Ancestral sequence
+ANC_SEQ=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Sequences/Tripsacum_TDD39103.fa
+
+#   Reference sequence
+REF_SEQ=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Sequences/Zea_mays.AGPv3.30.dna_sm.chromosome.10.fa
+
+#   Name the project
+PROJECT=Teosinte
+
+#   Where do we put the outfiles?
+    #   Note, the final outdirectory will be
+    #   ${SCRATCH}/${PROJECT}/<name_of_program/>
+SCRATCH=/home/ljcohen/ECL243/Assignment3/scratch
+
+#   Define the region being looked at
+#       Optional, but ANGSD is expensive to run without specifying regions to look at
+REGIONS=/home/ljcohen/ECL243/Assignment3/angsd-wrapper/Example_Data/Teosinte/Teosinte_Regions.txt
