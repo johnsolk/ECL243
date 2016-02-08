@@ -1,0 +1,9 @@
+Input: lname=/home/ljcohen/ECL243/Assignment3/scratch/Mexicana/SFS/Mexicana_SFSOut.beagle.gz nPop=5, fname=(null) qname=(null) outfiles=/home/ljcohen/ECL243/Assignment3/scratch/Mexicana/Admixture/Mexicana.5
+Setup: seed=1454973351 nThreads=32 method=1
+Convergence: maxIter=2000 tol=0.000010 tolLike50=0.100000 dymBound=0
+Filters: misTol=0.050000 minMaf=0.050000 minLrt=0.000000 minInd=0
+Input file has dim: nsites=763424 nind=2
+Input file has dim (AFTER filtering): nsites=15218 nind=2
+	[ALL done] cpu-time used =  1.85 sec
+	[ALL done] walltime used =  1.00 sec
+best like=-10338.252392 after 15 iterations
