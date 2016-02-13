@@ -1,0 +1,9 @@
+Input: lname=/home/ljcohen/ECL243/Assignment3/scratch/all/SFS/all_SFSOut.beagle.gz nPop=3, fname=(null) qname=(null) outfiles=/home/ljcohen/ECL243/Assignment3/scratch/all/Admixture/all.3
+Setup: seed=1455316882 nThreads=32 method=1
+Convergence: maxIter=2000 tol=0.000010 tolLike50=0.100000 dymBound=0
+Filters: misTol=0.050000 minMaf=0.050000 minLrt=0.000000 minInd=0
+Input file has dim: nsites=898436 nind=22
+Input file has dim (AFTER filtering): nsites=41860 nind=22
+	[ALL done] cpu-time used =  83.76 sec
+	[ALL done] walltime used =  54.00 sec
+best like=-736415.930522 after 313 iterations
