@@ -11,7 +11,7 @@ For this analysis:
     source ~/.bash_profile
     angsd-wrapper SFS ./Site_Frequency_Spectrum_Config
     angsd-wrapper Admixture ./Admixture_Config
-    angsd-wrapper Abbababa ./Abbababa_Config
+    
 
 an admixture framework was used with several K values below: 
 
@@ -24,11 +24,17 @@ These results are slightly different from Hufford et al. 2013. In addition to ma
 * Do the D statistics jive with the admixture plot? Why might these two methods give
 different answers?
 
-The Patterson’s D-statistic (explained in [Figure 3](http://www.nature.com/nature/journal/v487/n7405/full/nature11041.html)) were calculated, shown in column 6 of this table:
+        angsd-wrapper Abbababa ./Abbababa_Config
+        angsd-wrapper shiny graphing
+
+Use the `abbababa.txt` file.
+Type in `TIL08.bam` for H2 and `TIL03.bam` for H3
+
+Patterson’s D-statistic (explained in [Figure 3](http://www.nature.com/nature/journal/v487/n7405/full/nature11041.html)) were calculated, shown in column 6 of this table:
 
 https://github.com/ljcohen/ECL243/blob/master/Assignment4/all_Abbababa/all.abbababa.txt
 
-The majority of values are negative, indicating BABA excess and introgression across nodes from mexicana to mays. These different results might be due to allele frequency analysis methods. Whereas admixture takes into account the proportion of admixture, the Patterson's D-statistic tests for excess sites in one configuration vs. another.
+The majority of D-stat values are negative, indicating BABA excess and introgression across nodes from mexicana to mays. These different results compared to the admixture might be due to allele frequency analysis methods. Whereas admixture takes into account the proportion of admixture, the Patterson's D-statistic tests for excess sites in one configuration vs. another.
 
 ![image](https://raw.githubusercontent.com/ljcohen/ECL243/master/Assignment4/D_stat.png)
 
