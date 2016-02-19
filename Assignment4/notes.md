@@ -28,7 +28,7 @@ different answers?
         angsd-wrapper shiny graphing
 
 Use the `abbababa.txt` file.
-Type in `TIL08.bam` for H2 and `TIL03.bam` for H3
+Type in `TIL08.bam` (mexicana) for H2 and `TIL03.bam` (parviglumis) for H3
 
 Patterson’s D-statistic (explained in [Figure 3](http://www.nature.com/nature/journal/v487/n7405/full/nature11041.html)) were calculated, shown in column 6 of this table:
 
