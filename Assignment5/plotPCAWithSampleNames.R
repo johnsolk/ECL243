@@ -1,4 +1,4 @@
-# custom script by Igor Dolgolev at NYUMC
+# custom script by Igor Dolgalev at NYUMC
 
 
 plotPCAWithSampleNames = function(x, intgroup="condition", ntop=500)
