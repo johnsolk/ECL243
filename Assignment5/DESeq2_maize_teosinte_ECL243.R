@@ -192,7 +192,7 @@ colnames(up_down_1.5FC)
 head(up_down_1.5FC)
 colnames(up_down_1.5FC)
 d.1.5FC <- as.matrix(up_down_1.5FC[,c(10:32)])
-rownames(d) <- up_down_1.5FC[,1]
+rownames(d.1.5FC) <- up_down_1.5FC[,1]
 d<-na.omit(d.1.5FC)
 hr <- hclust(as.dist(1-cor(t(d.1.5FC), method="pearson")), method="complete")
 mycl <- cutree(hr, h=max(hr$height/1.5))
