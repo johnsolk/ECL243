@@ -9,6 +9,11 @@ library(magrittr)
 source('~/Documents/scripts/plotPCAWithSampleNames.R')
 setwd("~/Documents/UCDavis/ECL243/git/ECL243/Assignment5")
 
+
+
+# teo<-read.table("teo_anne.csv",header=T,sep=",") %>% mutate(padj=p.adjust(pvalue,method="BH"))
+# maize<-read.table("maize_anne.csv",header=T,sep=",") %>% mutate(padj=p.adjust(pvalue,method="BH"))
+
 teo<-read.table("teosintereadcount-2.csv",header=T,row.names=1,sep=",")
 maize<-read.table("Maizereadcount.csv",header=T,row.names=1,sep=",")
 
@@ -53,8 +58,8 @@ plotPCAWithSampleNames(log_teo, intgroup="condition", ntop=40000)
 res.teosinte<-results(ddsColl.teo,contrast=c("condition","265ppm","400ppm"))
 res.maize<-results(ddsColl.maize,contrast=c("condition","265ppm","400ppm"))
 
-resultsNames(res.teosinte)
-resultsNames(res.maize)
+#resultsNames(res.teosinte)
+#resultsNames(res.maize)
 #plotMA(res2,alpha=0.01,main="Teosinte, 265 vs. 400",ylim=c(-6,7))
 plot(log2(res.teosinte$baseMean), res.teosinte$log2FoldChange, 
      col=ifelse(res.teosinte$padj < 0.05, "red","gray67"),
@@ -70,6 +75,83 @@ abline(h=c(-1,1), col="blue")
 ###
 norm_counts.teo<-counts(ddsColl.teo,normalized=TRUE)
 norm_counts.maize<-counts(ddsColl.maize,normalized=TRUE)
+
+###
+# Maize
+# get gene names from Ensembl gene ID
+
+data_table<-norm_counts.maize
+ensembl_id<-rownames(data_table)
+ensembl_id_fixed<-gsub("^gene:","",ensembl_id)
+#listAttributes(ensembl)
+query<-getBM(attributes=c('ensembl_gene_id','description','gene_biotype'), filters = 'ensembl_gene_id', values = ensembl_id_fixed, mart=ensembl)
+#query<-getBM(attributes=c('description','ensembl_gene_id','start_position'),filters=c('start'),values=c(130000),mart=ensembl)
+new_res<-as.data.frame(data_table)
+data_table<-cbind(new_res,ensembl_id_fixed)
+col.names<-c("ensembl_id_fixed",'description',"gene_biotype")
+colnames(query)<-col.names
+merge_biomart_res_counts <- merge(data_table,query,by="ensembl_id_fixed")
+head(merge_biomart_res_counts)
+temp_data_merged_counts<-merge_biomart_res_counts
+###
+# merge gene names with Maize expression data
+head(res.maize)
+ensembl_id<-rownames(res.maize)
+ensembl_id_fixed<-gsub("^gene:","",ensembl_id)
+new_res<-as.data.frame(res.maize)
+new_res<-cbind(new_res,ensembl_id_fixed)
+merge_biomart_res <- merge(new_res,query,by="ensembl_id_fixed")
+head(merge_biomart_res)
+merge_biomart_res_all<-merge(merge_biomart_res,temp_data_merged_counts,by="ensembl_id_fixed")
+merge_biomart_res_all<-merge_biomart_res_all[order(merge_biomart_res_all$padj),]
+merge_biomart_res_all<-subset(merge_biomart_res_all,merge_biomart_res_all$padj!="NA")
+head(merge_biomart_res_all)
+dim(merge_biomart_res_all)
+write.csv(merge_biomart_res_all,file="Maize_all.csv")
+res_merged_cutoff<-subset(merge_biomart_res_all,merge_biomart_res_all$padj<0.05)
+# pick everything from maize that is padj>0.05,
+# use this to subset teosinte
+res_merged_cutoff_not_significant<-subset(merge_biomart_res_all,merge_biomart_res_all$padj>0.05)
+dim(res_merged_cutoff_not_significant)
+write.csv(res_merged_cutoff_not_significant,file="Maize_notsig_greaterthan_padj0.05.csv")
+#up_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5)
+#down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange< -1.5)
+#dim(up_1.5FC)
+#dim(down_1.5FC)
+#up_down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5 |res_merged_cutoff$log2FoldChange< -1.5)
+#dim(up_down_1.5FC)
+#head(up_down_1.5FC)
+#colnames(up_down_1.5FC)
+#write.csv(up_down_1.5FC,file="Maize_padj0.05_log2FC1.5.csv")
+
+# heatmap Maize
+head(res_merged_cutoff_not_significant)
+colnames(res_merged_cutoff_not_significant)
+d <- as.matrix(res_merged_cutoff_not_significant[,c(10:17)])
+rownames(d) <- res_merged_cutoff_not_significant[,1]
+d<-na.omit(d)
+hr <- hclust(as.dist(1-cor(t(d), method="pearson")), method="complete")
+mycl <- cutree(hr, h=max(hr$height/1.5))
+clusterCols <- rainbow(length(unique(mycl)))
+myClusterSideBar <- clusterCols[mycl]
+myheatcol <- greenred(75)
+#png("Maize_heatmap.png", width = 7*300,height = 7*300,res = 1200,pointsize = 2) 
+heatmap.2(d, main="Maize, padj>0.05", 
+          Rowv=as.dendrogram(hr),
+          cexRow=0.15,cexCol=0.5,srtCol= 90,
+          adjCol = c(NA,0),offsetCol=2, 
+          Colv=NA, dendrogram="row", 
+          scale="row", col=myheatcol, 
+          density.info="none", 
+          trace="none")
+#dev.off()
+
+
+
+
+# use ID from maize subset pdj>0.05 with teosinte
+
+
 ###
 # Teosinte
 # get gene names from Ensembl gene ID
@@ -106,7 +188,8 @@ merge_biomart_res_all<-merge(merge_biomart_res,temp_data_merged_counts,by="ensem
 merge_biomart_res_all<-merge_biomart_res_all[order(merge_biomart_res_all$padj),]
 merge_biomart_res_all<-subset(merge_biomart_res_all,merge_biomart_res_all$padj!="NA")
 head(merge_biomart_res_all)
-#write.csv(merge_biomart_res_all,file="Teosinte_all.csv")
+dim(merge_biomart_res_all)
+write.csv(merge_biomart_res_all,file="Teosinte_all.csv")
 res_merged_cutoff<-subset(merge_biomart_res_all,merge_biomart_res_all$padj<0.05)
 dim(res_merged_cutoff)
 #write.csv(res_merged_cutoff,file="Teosinte_padj0.05.csv")
@@ -145,68 +228,5 @@ heatmap.2(d.1.5FC, main="Teosinte, padj<0.05, log2FC +-1.5",
 
 
 
-###
-# Maize
-# get gene names from Ensembl gene ID
-data_table<-norm_counts.maize
-ensembl_id<-rownames(data_table)
-ensembl_id_fixed<-gsub("^gene:","",ensembl_id)
-#listAttributes(ensembl)
-query<-getBM(attributes=c('ensembl_gene_id','description','gene_biotype'), filters = 'ensembl_gene_id', values = ensembl_id_fixed, mart=ensembl)
-#query<-getBM(attributes=c('description','ensembl_gene_id','start_position'),filters=c('start'),values=c(130000),mart=ensembl)
-new_res<-as.data.frame(data_table)
-data_table<-cbind(new_res,ensembl_id_fixed)
-col.names<-c("ensembl_id_fixed",'description',"gene_biotype")
-colnames(query)<-col.names
-merge_biomart_res_counts <- merge(data_table,query,by="ensembl_id_fixed")
-head(merge_biomart_res_counts)
-temp_data_merged_counts<-merge_biomart_res_counts
-###
-# merge gene names with Maize expression data
-head(res.maize)
-ensembl_id<-rownames(res.maize)
-ensembl_id_fixed<-gsub("^gene:","",ensembl_id)
-new_res<-as.data.frame(res.maize)
-new_res<-cbind(new_res,ensembl_id_fixed)
-merge_biomart_res <- merge(new_res,query,by="ensembl_id_fixed")
-head(merge_biomart_res)
-merge_biomart_res_all<-merge(merge_biomart_res,temp_data_merged_counts,by="ensembl_id_fixed")
-merge_biomart_res_all<-merge_biomart_res_all[order(merge_biomart_res_all$padj),]
-merge_biomart_res_all<-subset(merge_biomart_res_all,merge_biomart_res_all$padj!="NA")
-head(merge_biomart_res_all)
-#write.csv(merge_biomart_res_all,file="Maize_all.csv")
-res_merged_cutoff<-subset(merge_biomart_res_all,merge_biomart_res_all$padj<0.05)
-dim(res_merged_cutoff)
-#write.csv(res_merged_cutoff,file="Maize_padj0.05.csv")
-up_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5)
-down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange< -1.5)
-dim(up_1.5FC)
-dim(down_1.5FC)
-up_down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5 |res_merged_cutoff$log2FoldChange< -1.5)
-dim(up_down_1.5FC)
-head(up_down_1.5FC)
-colnames(up_down_1.5FC)
-#write.csv(up_down_1.5FC,file="Maize_padj0.05_log2FC1.5.csv")
 
-# heatmap Maize
-head(up_down_1.5FC)
-colnames(up_down_1.5FC)
-d.1.5FC <- as.matrix(up_down_1.5FC[,c(10:32)])
-rownames(d.1.5FC) <- up_down_1.5FC[,1]
-d<-na.omit(d.1.5FC)
-hr <- hclust(as.dist(1-cor(t(d.1.5FC), method="pearson")), method="complete")
-mycl <- cutree(hr, h=max(hr$height/1.5))
-clusterCols <- rainbow(length(unique(mycl)))
-myClusterSideBar <- clusterCols[mycl]
-myheatcol <- greenred(75)
-#png("Teosinte_heatmap.png", width = 7*300,height = 7*300,res = 1200,pointsize = 2) 
-heatmap.2(d.1.5FC, main="Maize, padj<0.05, log2FC +-1.5", 
-          Rowv=as.dendrogram(hr),
-          cexRow=0.15,cexCol=0.5,srtCol= 90,
-          adjCol = c(NA,0),offsetCol=1, 
-          Colv=NA, dendrogram="row", 
-          scale="row", col=myheatcol, 
-          density.info="none", 
-          trace="none")
-#dev.off()
 
