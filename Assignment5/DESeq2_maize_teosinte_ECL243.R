@@ -78,6 +78,16 @@ norm_counts.maize<-counts(ddsColl.maize,normalized=TRUE)
 
 ###
 # Maize
+
+# get gene names from Ensembl gene ID
+#mart = useMart(biomart = "ENSEMBL_MART_ENSEMBL", host = "www.ensembl.org")
+mart = useMart(biomart = "plants_mart", host="plants.ensembl.org")
+#listDatasets(mart)
+ensembl=useMart("plants_mart",dataset="zmays_eg_gene", host="plants.ensembl.org")
+# old command:
+#ensembl=useMart("ensembl")
+ensembl = useDataset("zmays_eg_gene",mart=ensembl)
+
 # get gene names from Ensembl gene ID
 
 data_table<-norm_counts.maize
@@ -102,18 +112,28 @@ new_res<-as.data.frame(res.maize)
 new_res<-cbind(new_res,ensembl_id_fixed)
 merge_biomart_res <- merge(new_res,query,by="ensembl_id_fixed")
 head(merge_biomart_res)
+dim(merge_biomart_res)
+#[1] 39469     9
 merge_biomart_res_all<-merge(merge_biomart_res,temp_data_merged_counts,by="ensembl_id_fixed")
 merge_biomart_res_all<-merge_biomart_res_all[order(merge_biomart_res_all$padj),]
 merge_biomart_res_all<-subset(merge_biomart_res_all,merge_biomart_res_all$padj!="NA")
 head(merge_biomart_res_all)
 dim(merge_biomart_res_all)
-write.csv(merge_biomart_res_all,file="Maize_all.csv")
+#[1] 17367    19
+#write.csv(merge_biomart_res_all,file="Maize_all.csv")
 res_merged_cutoff<-subset(merge_biomart_res_all,merge_biomart_res_all$padj<0.05)
 # pick everything from maize that is padj>0.05,
 # use this to subset teosinte
 res_merged_cutoff_not_significant<-subset(merge_biomart_res_all,merge_biomart_res_all$padj>0.05)
 dim(res_merged_cutoff_not_significant)
-write.csv(res_merged_cutoff_not_significant,file="Maize_notsig_greaterthan_padj0.05.csv")
+
+
+
+
+
+
+#write.csv(res_merged_cutoff_not_significant,file="Maize_notsig_greaterthan_padj0.05.csv")
+
 #up_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5)
 #down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange< -1.5)
 #dim(up_1.5FC)
@@ -125,25 +145,25 @@ write.csv(res_merged_cutoff_not_significant,file="Maize_notsig_greaterthan_padj0
 #write.csv(up_down_1.5FC,file="Maize_padj0.05_log2FC1.5.csv")
 
 # heatmap Maize
-head(res_merged_cutoff_not_significant)
-colnames(res_merged_cutoff_not_significant)
-d <- as.matrix(res_merged_cutoff_not_significant[,c(10:17)])
-rownames(d) <- res_merged_cutoff_not_significant[,1]
-d<-na.omit(d)
-hr <- hclust(as.dist(1-cor(t(d), method="pearson")), method="complete")
-mycl <- cutree(hr, h=max(hr$height/1.5))
-clusterCols <- rainbow(length(unique(mycl)))
-myClusterSideBar <- clusterCols[mycl]
-myheatcol <- greenred(75)
+#head(res_merged_cutoff_not_significant)
+#colnames(res_merged_cutoff_not_significant)
+#d <- as.matrix(res_merged_cutoff_not_significant[,c(10:17)])
+#rownames(d) <- res_merged_cutoff_not_significant[,1]
+#d<-na.omit(d)
+#hr <- hclust(as.dist(1-cor(t(d), method="pearson")), method="complete")
+#mycl <- cutree(hr, h=max(hr$height/1.5))
+#clusterCols <- rainbow(length(unique(mycl)))
+#myClusterSideBar <- clusterCols[mycl]
+#myheatcol <- greenred(75)
 #png("Maize_heatmap.png", width = 7*300,height = 7*300,res = 1200,pointsize = 2) 
-heatmap.2(d, main="Maize, padj>0.05", 
-          Rowv=as.dendrogram(hr),
-          cexRow=0.15,cexCol=0.5,srtCol= 90,
-          adjCol = c(NA,0),offsetCol=2, 
-          Colv=NA, dendrogram="row", 
-          scale="row", col=myheatcol, 
-          density.info="none", 
-          trace="none")
+#heatmap.2(d, main="Maize, padj>0.05", 
+#          Rowv=as.dendrogram(hr),
+#          cexRow=0.15,cexCol=0.5,srtCol= 90,
+ #         adjCol = c(NA,0),offsetCol=2, 
+#          Colv=NA, dendrogram="row", 
+#          scale="row", col=myheatcol, 
+#          density.info="none", 
+#          trace="none")
 #dev.off()
 
 
@@ -151,17 +171,11 @@ heatmap.2(d, main="Maize, padj>0.05",
 
 # use ID from maize subset pdj>0.05 with teosinte
 
+id_not_sig<-res_merged_cutoff_not_significant$ensembl_id_fixed
 
 ###
 # Teosinte
-# get gene names from Ensembl gene ID
-#mart = useMart(biomart = "ENSEMBL_MART_ENSEMBL", host = "www.ensembl.org")
-mart = useMart(biomart = "plants_mart", host="plants.ensembl.org")
-#listDatasets(mart)
-ensembl=useMart("plants_mart",dataset="zmays_eg_gene", host="plants.ensembl.org")
-# old command:
-#ensembl=useMart("ensembl")
-ensembl = useDataset("zmays_eg_gene",mart=ensembl)
+
 data_table<-norm_counts.teo
 ensembl_id<-rownames(data_table)
 ensembl_id_fixed<-gsub("^gene:","",ensembl_id)
@@ -186,21 +200,30 @@ merge_biomart_res <- merge(new_res,query,by="ensembl_id_fixed")
 head(merge_biomart_res)
 merge_biomart_res_all<-merge(merge_biomart_res,temp_data_merged_counts,by="ensembl_id_fixed")
 merge_biomart_res_all<-merge_biomart_res_all[order(merge_biomart_res_all$padj),]
-merge_biomart_res_all<-subset(merge_biomart_res_all,merge_biomart_res_all$padj!="NA")
+teo_subset_maize
 head(merge_biomart_res_all)
 dim(merge_biomart_res_all)
-write.csv(merge_biomart_res_all,file="Teosinte_all.csv")
-res_merged_cutoff<-subset(merge_biomart_res_all,merge_biomart_res_all$padj<0.05)
-dim(res_merged_cutoff)
-#write.csv(res_merged_cutoff,file="Teosinte_padj0.05.csv")
-up_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5)
-down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange< -1.5)
-dim(up_1.5FC)
-dim(down_1.5FC)
-up_down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5 |res_merged_cutoff$log2FoldChange< -1.5)
-dim(up_down_1.5FC)
-head(up_down_1.5FC)
-colnames(up_down_1.5FC)
+#write.csv(merge_biomart_res_all,file="Teosinte_all.csv")
+
+# subset genes not differentially expressed in maize
+teo_subset_maize<-merge_biomart_res_all[merge_biomart_res_all$ensembl_id_fixed %in% id_not_sig,]
+dim(teo_subset_maize)
+#write.csv(teo_subset_maize,file="Teosinte_subset_notsigmaize.csv")
+teo_subset_maize_sig<-teo_subset_maize[order(teo_subset_maize$padj),]
+teo_subset_maize_sig<-subset(teo_subset_maize_sig,teo_subset_maize_sig$padj<0.05)
+dim(teo_subset_maize_sig)
+write.csv(teo_subset_maize_sig,file="Teosinte_subset_notsigmaize_padj0.05.csv")
+
+
+
+#up_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5)
+#down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange< -1.5)
+#dim(up_1.5FC)
+#dim(down_1.5FC)
+#up_down_1.5FC<-subset(res_merged_cutoff,res_merged_cutoff$log2FoldChange>1.5 |res_merged_cutoff$log2FoldChange< -1.5)
+#dim(up_down_1.5FC)
+#head(up_down_1.5FC)
+#colnames(up_down_1.5FC)
 #write.csv(up_down_1.5FC,file="Teosinte_padj0.05_log2FC1.5.csv")
 
 # heatmap Teosinte
