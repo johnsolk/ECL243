@@ -227,19 +227,19 @@ write.csv(teo_subset_maize_sig,file="Teosinte_subset_notsigmaize_padj0.05.csv")
 #write.csv(up_down_1.5FC,file="Teosinte_padj0.05_log2FC1.5.csv")
 
 # heatmap Teosinte
-head(up_down_1.5FC)
-colnames(up_down_1.5FC)
-d.1.5FC <- as.matrix(up_down_1.5FC[,c(10:17)])
-rownames(d.1.5FC) <- up_down_1.5FC[,1]
-d.1.5FC<-na.omit(d.1.5FC)
+head(teo_subset_maize_sig)
+colnames(teo_subset_maize_sig)
+d <- as.matrix(teo_subset_maize_sig[,c(10:32)])
+rownames(d) <- teo_subset_maize_sig[,1]
+d<-na.omit(d)
 #colnames(d.1.5FC)<-teo.names
-hr <- hclust(as.dist(1-cor(t(d.1.5FC), method="pearson")), method="complete")
+hr <- hclust(as.dist(1-cor(t(d), method="pearson")), method="complete")
 mycl <- cutree(hr, h=max(hr$height/1.5))
 clusterCols <- rainbow(length(unique(mycl)))
 myClusterSideBar <- clusterCols[mycl]
 myheatcol <- greenred(75)
 #png("Teosinte_heatmap.png", width = 7*300,height = 7*300,res = 1200,pointsize = 2) 
-heatmap.2(d.1.5FC, main="Teosinte, padj<0.05, log2FC +-1.5", 
+heatmap.2(d, main="Teosinte not sig in Maize, padj<0.05", 
           Rowv=as.dendrogram(hr),
           cexRow=0.15,cexCol=0.5,srtCol= 90,
           adjCol = c(NA,0),offsetCol=1, 
